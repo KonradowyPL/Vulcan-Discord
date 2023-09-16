@@ -5,7 +5,8 @@ def displayBlock(block: list[data._lesson.Lesson]) -> str:
     """returns formated lesson block"""
     message = ""
     for Lesson in block:
-        message += displayLesson(Lesson) + "\n"
+        if Lesson != None:
+            message += displayLesson(Lesson) + "\n"
 
     # removes ending enter from string
     message = message[:-1]

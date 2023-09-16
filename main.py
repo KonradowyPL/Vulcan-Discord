@@ -6,12 +6,6 @@ import load
 import loop
 
 
-# asycio throws error when loop gets closed (?)
-# This prevents throwing error
-from asyncio import base_events
-base_events.BaseEventLoop._check_closed = lambda x: None
-
-
 async def main():
 
     global client

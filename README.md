@@ -2,7 +2,6 @@
 
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-NONE-blue.svg)
-![Roll](https://img.shields.io/badge/Rick-Astley-green.svg)
 
 A Python script that uses the Vulcan API to fetch lesson schedules and sends reminders to Discord users 20 minutes before a lesson starts.
 
@@ -15,13 +14,12 @@ A Python script that uses the Vulcan API to fetch lesson schedules and sends rem
 - [Contributing](#contributing)
 - [Liecnse](#license)
 - [Files](#files)
-
 - [Documentation](#documentation)
 - [Other links](#other-links)
 
 ## Introduction
 
-Sends discord message to users about their next lesson
+Sends discord message to users about their next lesson containing:
 
 - Lesson start hour
 - Lesson end hour
@@ -36,22 +34,22 @@ Sends discord message to users about their next lesson
 ## Requirements
 
 - Python 3.8+
-- Required Python libraries (install using `pip`):
-  - `vulcan-api`
-  - `discord-webhook
+- Required Python libraries:
+  - [`vulcan-api`](https://github.com/kapi2289/vulcan-api)
+  - [`discord-webhook`](https://github.com/lovvskillz/python-discord-webhook)
 
 ## Initial onfiguration
 
-- Copy repo to your local mashine
+- Copy repo to your local machine
 - run `register.py` file
-- log in to your Vulcan account
+- log in to your Vulcan account on Your computer
 - go to `Uczeń` tab
 - select `Dostęp mobilny` tab
 - press `Wygeneruj kod dostępu` button
 - copy-pasta `Token`, `Symbol` and `PIN` texts
 - make a discord Webhook and paste it
 
-#### NOTE
+#### Note
 
 Never relase your `Token` or `PIN` to anyone. This will give them full acces to your account. If you do then press `Wyrejestruj Użądzenie` button immediately!
 
@@ -70,7 +68,3 @@ This code does not make or edit any files except `secrets.json`, which contains 
 ## Documentation
 
 TODO
-
-## Other links
-
-[Vulcan API repo](https://github.com/kapi2289/vulcan-api)
