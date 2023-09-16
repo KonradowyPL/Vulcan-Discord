@@ -53,7 +53,7 @@ async def getTodaysLessons(c: Vulcan) -> list[list[data._lesson.Lesson]]:
     current_date = datetime.date.today()
     # today, 00,00AM
     midnight = datetime.datetime.combine(
-        current_date, datetime.time(0, 0)).date() + datetime.timedelta(days=-3)
+        current_date, datetime.time(0, 0)).date() + datetime.timedelta(days=0)
     getlessons = await client.data.get_lessons(date_from=midnight,)
 
     # empty array len = 13
