@@ -3,7 +3,9 @@ from vulcan import data
 
 def displayBlock(block: list[data._lesson.Lesson]) -> str:
     """returns formated lesson block"""
+
     message = ""
+
     for Lesson in block:
         if Lesson != None:
             message += displayLesson(Lesson) + "\n"
@@ -31,8 +33,8 @@ def displayLesson(Lesson: data._lesson.Lesson) -> str:
         "": ""
     }
 
-    # is there is other name
-    group = "None"
+    group = Lesson.group.shortcut
+
     if Lesson.group.shortcut in groupNames:
         group = groupNames[Lesson.group.shortcut]
 

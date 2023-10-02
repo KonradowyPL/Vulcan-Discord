@@ -14,8 +14,8 @@ A Python script that uses the Vulcan API to fetch lesson schedules and sends rem
 - [Contributing](#contributing)
 - [Liecnse](#license)
 - [Files](#files)
-- [Documentation](#documentation)
-- [Other links](#other-links)
+- [Documentation](#documentation) (TODO)
+- [Config file](#congig-file) (TODO)
 
 ## Introduction
 
@@ -42,7 +42,7 @@ Sends discord message to users about their next lesson containing:
 
 - Copy repo to your local machine
 - run `register.py` file
-- log in to your Vulcan account on Your computer
+- log in to Your Vulcan account on Your computer
 - go to `Uczeń` tab
 - select `Dostęp mobilny` tab
 - press `Wygeneruj kod dostępu` button
@@ -51,7 +51,7 @@ Sends discord message to users about their next lesson containing:
 
 #### Note
 
-Never relase your `Token` or `PIN` to anyone. This will give them full acces to your account. If you do then press `Wyrejestruj Użądzenie` button immediately!
+Giving someone you `secrets.json` file might give them ability to use your accout
 
 ## Contributing
 
@@ -66,5 +66,9 @@ This project has no license, which means that you can do anything with this code
 This code does not make or edit any files except `secrets.json`, which contains all your API keys
 
 ## Documentation
+
+TODO
+
+## Congig File
 
 TODO

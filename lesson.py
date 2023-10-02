@@ -6,6 +6,8 @@ global client
 
 
 def changeLessonData(Lesson: data._lesson.Lesson, override: dict = {}) -> data._lesson.Lesson:
+    "overrides give lesson data"
+
     lesson_info = {
         "id": Lesson.id,
         "date": Lesson.date,

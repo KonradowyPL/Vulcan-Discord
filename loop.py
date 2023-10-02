@@ -1,60 +1,69 @@
 from vulcan import data
-import time
 import datetime
 import asyncio
-import vulcan
-
 import webhook
-import lesson
+import vulcan
+import time
+
 import display
+import lesson
+import tasks
 
 global client
 
-
-async def waitUntil(timestamp: int) -> None:
-    """waits until given timestamp"""
-
-    print("Waiting untill", timestamp)
-    await asyncio.sleep(timestamp - time.time())
+# forces lesson to be sent to user even if it already happen. remove after debugging
+force = True
 
 
-async def printLesson(block: list[data._lesson.Lesson]) -> None:
-
-    # next lesson start
-    dt = time.mktime(datetime.datetime.combine(
-        block[0].date.date, block[0].time.from_).timetuple()) - 1200  # 20 mins earlier
-
-    # wait until next lesson starts
-    await waitUntil(dt)
-
-    block = await lesson.SwapChangedLessons(block)
+async def printLesson(block: "list[data._lesson.Lesson]") -> None:
 
     message = display.displayBlock(block)
 
     # send discord message
-    print(message)
     webhook.send(message)
 
 
-async def todayLoop(c: vulcan.Vulcan) -> None:
-    """single day loop menager"""
+def dtToTimestamp(date: datetime.date, time_: datetime.time):
+    """converts dateitme.date & datetime.time to timestamp"""
+    return time.mktime(datetime.datetime.combine(
+        date, time_).timetuple())
 
+
+def init(c: "vulcan.vulcan"):
+    global client
     client = c
 
-    # get toodays lessons
+
+async def todayLoop():
+
+    global client
     lessons = await lesson.getTodaysLessons(client)
 
+    timeNow = time.time()
+
     for block in lessons:
-        # skip if there is no lesson lessons
         if len(block) == 0:
             continue
 
-        # print lesson
-        await printLesson(block)
+        block = await lesson.SwapChangedLessons(block)
 
-    # today, 01,00AM
-    tomorow = datetime.datetime.combine(
-        datetime.date.today(), datetime.time(0, 0)) + datetime.timedelta(days=1, minutes=1)
+        if len(block) == 0:
+            continue
 
-    # wait until tomorow
-    await waitUntil(time.mktime(tomorow.timetuple()))
+        params = {
+            "block": block
+        }
+
+        date = dtToTimestamp(
+            block[0].date.date, block[0].time.from_) - 1200  # 20 mins earlier
+
+        if timeNow < date or force:
+            await tasks.runAt(date, printLesson, params)
+        else:
+            print("Skipped lesson: already after")
+
+    # wait until tomorow 00:01 AM
+    tomorow = dtToTimestamp(datetime.date.today(), datetime.time(0, 0)) + 86460
+
+    print("Day loop done.")
+    await asyncio.sleep(tomorow - time.time())
