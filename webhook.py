@@ -1,7 +1,7 @@
 from discord_webhook import DiscordWebhook
 import json
 
-debug = True
+debug = False
 
 
 # load webhook key

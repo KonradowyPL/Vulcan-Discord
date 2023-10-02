@@ -12,7 +12,7 @@ import tasks
 global client
 
 # forces lesson to be sent to user even if it already happen. remove after debugging
-force = True
+force = False
 
 
 async def printLesson(block: "list[data._lesson.Lesson]") -> None:
